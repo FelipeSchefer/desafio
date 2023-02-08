@@ -1,43 +1,97 @@
 import { Button, Form, FormFeedback, FormGroup, FormText, Input, Label } from "reactstrap";
-
+import { loginValidationEmail, loginValidationSenha } from "../validations/LoginValidation";
+import { useState } from "react";
+import { useNavigate } from 'react-router'
+import './login.css'
 
 const Login = () => {
+ let URL_Navigate = useNavigate()
+ 
+ const [emailValido, setEmailValido] = useState()
+ const [emailInvalido, setEmailInvalido] = useState()
+ const [senhaValido, setSenhaValido] = useState()
+ const [senhaInvalido, setSenhaInvalido] = useState()
+ const [logar, setLogar] = useState()
+
+
  const MASTER = {
-   usuario: "Master",
-   senha: 1
+   email: "master@gmail.com",
+   senha: '123456789'
  }
 
- const validarUsuario = () =>{
+ const validarInputsFrom = async (event) =>{
+  event.preventDefault()
+  let email = {email: event.target[0].value}
+  let senha = {senha: event.target[1].value}
 
+  const isEmailValid = await loginValidationEmail.isValid(email)
+  const isSenhaValid = await loginValidationSenha.isValid(senha)
+  
+  if(isEmailValid) setEmailValido(true)
+  else setEmailInvalido(true)
+
+  if(!isEmailValid) setEmailValido(false)
+  else setEmailInvalido(false)
+  
+  if(isSenhaValid) setSenhaValido(true)
+  else setSenhaInvalido(true)
+
+  if(!isSenhaValid) setSenhaValido(false)
+  else setSenhaInvalido(false)
+  
+  if(isEmailValid && isSenhaValid){
+   verificarLogin()
+  } 
+ }
+
+ const verificarLogin = () => {
+   let emailInput = document.getElementById('email').value
+   let senhaInput = document.getElementById('senha').value
+
+   setLogar(true)
+   if(emailInput.trim() === MASTER.email && senhaInput.trim() === MASTER.senha){
+    URL_Navigate('/carts',{replace: true})
+   }
  }
 
  return (
   <div className="container">
-    <Form>
+    <Form className="form" onSubmit={validarInputsFrom}>
       <FormGroup>
         <Label for="email">
           Email
         </Label>
-        <Input type="email" placeholder="Escreva aqui seu email" valid />
-        <FormFeedback valid>
-          Legal! o seu email é valido
+        <Input type="email" placeholder="Escreva aqui seu email" 
+         valid={emailValido} 
+         invalid={emailInvalido}
+         id="email" 
+        />
+        <FormFeedback valid={emailValido}>
+          {emailValido ? "Legal! o seu email é valido" : "Email invalido verifique se há @ e .com"}
         </FormFeedback>
-        <FormText>
-          Escreva o seu melhor email.
-        </FormText>
       </FormGroup>
       <FormGroup>
         <Label for="senha">
           Senha
         </Label>
-        <Input type="password" placeholder="Escreva aqui sua senha" invalid />
-        <FormFeedback>
-          Essa senha é fraca 
+        <Input type="password" placeholder="Escreva aqui sua senha" 
+         valid={senhaValido} 
+         invalid={senhaInvalido} 
+         id="senha"
+        />
+        <FormFeedback 
+         valid={senhaValido}>
+          {senhaValido ? "Senha valida!" : "Senha incorreta deve conter entre 6 e 20 caracteres"}          
         </FormFeedback>
-        <FormText>
-          Escreva uma senha com no mínimo 6 caracteres.
-        </FormText>
       </FormGroup>
+      {
+       logar &&
+       <div className="alert">
+        <small>
+         O seu login não foi encontrado, caso queira cadastrar-se clique no link abaixo
+        </small>
+       </div>
+      }
       <Button className="btn-lg btn-dark btn-block">Log in</Button>
     </Form>
     <FormText>
