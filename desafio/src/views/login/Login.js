@@ -1,5 +1,5 @@
 import { Button, Form, FormFeedback, FormGroup, FormText, Input, Label } from "reactstrap";
-import { loginValidationEmail, loginValidationSenha } from "../validations/LoginValidation";
+import { loginValidationEmail, loginValidationSenha } from "../../validations/LoginValidation";
 import { useState } from "react";
 import { useNavigate } from 'react-router'
 import './login.css'
@@ -50,7 +50,7 @@ const Login = () => {
 
    setLogar(true)
    if(emailInput.trim() === MASTER.email && senhaInput.trim() === MASTER.senha){
-    URL_Navigate('/carts',{replace: true})
+    URL_Navigate('/cards',{replace: true})
    }
  }
 
@@ -86,8 +86,8 @@ const Login = () => {
       </FormGroup>
       {
        logar &&
-       <div className="alert">
-        <small>
+       <div>
+        <small id="alert">
          O seu login não foi encontrado, caso queira cadastrar-se clique no link abaixo
         </small>
        </div>
