@@ -1,6 +1,7 @@
 import React from 'react'
 import { useLocation } from 'react-router-dom'
 import { Toast, ToastBody, ToastHeader } from 'reactstrap'
+import NavbarComponent from '../component/NavbarComponent'
 
 const CardDetalhes = () => {
   const location = useLocation()
@@ -11,6 +12,12 @@ const CardDetalhes = () => {
 
   return (
     <div className='container'>
+      <NavbarComponent
+        caminhoA={'/home'} nomeA={'Home'} 
+        caminhoB={'/login'} nomeB={'Login'}
+        caminhoC={'/cards'} nomeC={'Lista de Funcionarios'}
+        
+      />
       <h3>Detalhes</h3>
       <Toast>
         <ToastHeader icon="primary"> {first_name} </ToastHeader>

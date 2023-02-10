@@ -3,6 +3,7 @@ import { loginValidationEmail, loginValidationSenha } from "../../validations/Lo
 import { useState } from "react";
 import { useNavigate } from 'react-router'
 import './login.css'
+import NavbarComponent from "../component/NavbarComponent";
 
 const Login = (props) => {
  let URL_Navigate = useNavigate()
@@ -57,6 +58,11 @@ const Login = (props) => {
 
  return (
   <div className="container">
+    <NavbarComponent 
+      caminhoA={'/home'} nomeA={'Home'} 
+      caminhoB={''} nomeB={''}
+      caminhoC={''} nomeC={''}
+    />
     <Form className="form" onSubmit={validarInputsFrom}>
       <FormGroup>
         <Label for="email">

@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Button, Card, CardBody, CardTitle} from "reactstrap";
 import { useNavigate } from 'react-router'
 import { cardData } from '../../data/cardData'
+import NavbarComponent from '../component/NavbarComponent';
 
 const CardFuncionario = () => {
   let URL_Navigate = useNavigate()
@@ -21,6 +22,11 @@ const CardFuncionario = () => {
 
   return (
     <div className='container'>
+      <NavbarComponent
+        caminhoA={'/home'} nomeA={'Home'} 
+        caminhoB={'/Login'} nomeB={'Login'}
+        caminhoC={''} nomeC={''}
+      />
       <h2>Lista de funcionários</h2>
       {
         cardData.map(pessoa =>  (    
