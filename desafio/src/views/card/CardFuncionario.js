@@ -23,7 +23,7 @@ const CardFuncionario = () => {
   return (
     <div className='container'>
       <NavbarComponent
-        caminhoA={'/home'} nomeA={'Home'} 
+        caminhoA={'/'} nomeA={'Home'} 
         caminhoB={'/Login'} nomeB={'Login'}
         caminhoC={''} nomeC={''}
       />

@@ -59,7 +59,7 @@ const Login = (props) => {
  return (
   <div className="container">
     <NavbarComponent 
-      caminhoA={'/home'} nomeA={'Home'} 
+      caminhoA={'/'} nomeA={'Home'} 
       caminhoB={''} nomeB={''}
       caminhoC={''} nomeC={''}
     />

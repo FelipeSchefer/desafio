@@ -13,10 +13,9 @@ const CardDetalhes = () => {
   return (
     <div className='container'>
       <NavbarComponent
-        caminhoA={'/home'} nomeA={'Home'} 
+        caminhoA={'/'} nomeA={'Home'} 
         caminhoB={'/login'} nomeB={'Login'}
-        caminhoC={'/cards'} nomeC={'Lista de Funcionarios'}
-        
+        caminhoC={'/cards'} nomeC={'Lista de Funcionarios'}     
       />
       <h3>Detalhes</h3>
       <Toast>
