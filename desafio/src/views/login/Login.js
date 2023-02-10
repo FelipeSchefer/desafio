@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useNavigate } from 'react-router'
 import './login.css'
 
-const Login = () => {
+const Login = (props) => {
  let URL_Navigate = useNavigate()
  
  const [emailValido, setEmailValido] = useState()
@@ -50,6 +50,7 @@ const Login = () => {
 
    setLogar(true)
    if(emailInput.trim() === MASTER.email && senhaInput.trim() === MASTER.senha){
+    props.autenticacao(true)
     URL_Navigate('/cards',{replace: true})
    }
  }
